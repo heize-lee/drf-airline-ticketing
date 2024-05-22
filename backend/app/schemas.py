@@ -1,20 +1,22 @@
-# project/app/schemas.py
 from pydantic import BaseModel, EmailStr
 
 class UserCreate(BaseModel):
-    first_name: str
-    last_name: str
+    firstName: str
+    lastName: str
     email: EmailStr
     password: str
 
+    class Config:
+        orm_mode = True
+
 class User(BaseModel):
     id: int
-    first_name: str
-    last_name: str
+    firstName: str
+    lastName: str
     email: EmailStr
 
     class Config:
-        from_attributes = True  # 변경된 설정 키 사용
+        orm_mode = True
 
 class Token(BaseModel):
     access_token: str
